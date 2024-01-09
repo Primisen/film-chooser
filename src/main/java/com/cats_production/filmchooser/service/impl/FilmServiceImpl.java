@@ -20,4 +20,9 @@ public class FilmServiceImpl implements FilmService {
     public Iterable<Film> findAll() {
         return filmRepository.findAll();
     }
+
+    @Override
+    public void add(Film film) {
+        filmRepository.save(film);
+    }
 }

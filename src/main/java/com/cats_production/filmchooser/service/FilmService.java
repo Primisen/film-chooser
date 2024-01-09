@@ -5,4 +5,6 @@ import com.cats_production.filmchooser.domain.Film;
 public interface FilmService {
 
     Iterable<Film> findAll();
+
+    void add(Film film);
 }
