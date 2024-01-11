@@ -6,5 +6,5 @@ public interface FilmService {
 
     Iterable<Film> findAll();
 
-    void add(Film film);
+    Film add(Film film);
 }
