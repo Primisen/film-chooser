@@ -50,7 +50,7 @@ public class FilmController {
 
         filmService.updateById(id, film);
 
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @DeleteMapping("/{id}")
@@ -58,6 +58,6 @@ public class FilmController {
 
         filmService.deleteById(id);
 
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
