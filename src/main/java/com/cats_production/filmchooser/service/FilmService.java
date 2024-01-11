@@ -11,4 +11,6 @@ public interface FilmService {
     Film add(Film film);
 
     void updateById(UUID id, Film film);
+
+    void deleteById(UUID id);
 }

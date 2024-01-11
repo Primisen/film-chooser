@@ -39,4 +39,9 @@ public class FilmServiceImpl implements FilmService {
 
         filmRepository.save(existing);
     }
+
+    @Override
+    public void deleteById(UUID id) {
+        filmRepository.deleteById(id);
+    }
 }
