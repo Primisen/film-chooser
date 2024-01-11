@@ -7,6 +7,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 @Slf4j
 public class FilmServiceImpl implements FilmService {
@@ -27,5 +29,14 @@ public class FilmServiceImpl implements FilmService {
     public Film add(Film film) {
         Film savedFilm = filmRepository.save(film);
         return savedFilm;
+    }
+
+    @Override
+    public void updateById(UUID id, Film film) {
+        Film existing = filmRepository.findById(film.getId()).orElseThrow(() -> new RuntimeException());
+        existing.setName(film.getName());
+        existing.setYear(film.getYear());
+
+        filmRepository.save(existing);
     }
 }
