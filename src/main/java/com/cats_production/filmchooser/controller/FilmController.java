@@ -13,15 +13,16 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/films")
 @Slf4j
 public class FilmController {
+
+    public static final String FILMS_PATH = "/api/v1/films";
+    public static final String FILMS_PATH_ID = FILMS_PATH + "/{id}";
 
     private final FilmService filmService;
 
@@ -30,17 +31,17 @@ public class FilmController {
         this.filmService = filmService;
     }
 
-    @GetMapping
+    @GetMapping(FILMS_PATH)
     public Iterable<Film> getFilms() {
         return filmService.findAll();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping(FILMS_PATH_ID)
     public Film getById(@PathVariable UUID id) {
         return filmService.getById(id);
     }
 
-    @PostMapping
+    @PostMapping(FILMS_PATH)
     public ResponseEntity<String> addFilm(@RequestBody Film film) {
         Film savedFilm = filmService.add(film);
 
@@ -50,7 +51,7 @@ public class FilmController {
         return new ResponseEntity<>(headers, HttpStatus.CREATED);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping(FILMS_PATH_ID)
     public ResponseEntity<String> updateById(@PathVariable("id") UUID id, @RequestBody Film film) {
 
         filmService.updateById(id, film);
@@ -58,7 +59,7 @@ public class FilmController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping(FILMS_PATH_ID)
     public ResponseEntity<String> deleteById(@PathVariable("id") UUID id) {
 
         filmService.deleteById(id);
