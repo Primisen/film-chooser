@@ -44,4 +44,9 @@ public class FilmServiceImpl implements FilmService {
     public void deleteById(UUID id) {
         filmRepository.deleteById(id);
     }
+
+    @Override
+    public Film getById(UUID id) {
+        return filmRepository.findById(id).orElseThrow(() -> new RuntimeException());
+    }
 }

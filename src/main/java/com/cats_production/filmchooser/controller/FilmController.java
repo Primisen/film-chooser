@@ -35,6 +35,11 @@ public class FilmController {
         return filmService.findAll();
     }
 
+    @GetMapping("/{id}")
+    public Film getById(@PathVariable UUID id) {
+        return filmService.getById(id);
+    }
+
     @PostMapping
     public ResponseEntity<String> addFilm(@RequestBody Film film) {
         Film savedFilm = filmService.add(film);
