@@ -1,6 +1,6 @@
 package com.cats_production.filmchooser.controller;
 
-import com.cats_production.filmchooser.domain.Film;
+import com.cats_production.filmchooser.model.Film;
 import com.cats_production.filmchooser.service.FilmService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

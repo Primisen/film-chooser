@@ -1,4 +1,4 @@
-package com.cats_production.filmchooser.domain;
+package com.cats_production.filmchooser.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

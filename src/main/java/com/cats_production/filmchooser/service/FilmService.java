@@ -1,6 +1,6 @@
 package com.cats_production.filmchooser.service;
 
-import com.cats_production.filmchooser.domain.Film;
+import com.cats_production.filmchooser.model.Film;
 
 import java.util.UUID;
 

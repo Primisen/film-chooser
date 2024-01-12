@@ -1,6 +1,6 @@
 package com.cats_production.filmchooser.service.impl;
 
-import com.cats_production.filmchooser.domain.Film;
+import com.cats_production.filmchooser.model.Film;
 import com.cats_production.filmchooser.repository.FilmRepository;
 import com.cats_production.filmchooser.service.FilmService;
 import lombok.extern.slf4j.Slf4j;
