@@ -1,5 +1,6 @@
 package com.cats_production.filmchooser.controller;
 
+import com.cats_production.filmchooser.exception.NotFoundException;
 import com.cats_production.filmchooser.service.FilmService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,8 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.UUID;
 
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -27,23 +30,32 @@ class FilmControllerTest {
     void getById() throws Exception {
 
         mockMvc.perform(get(FilmController.FILMS_PATH_ID, UUID.randomUUID())
-                .accept(MediaType.APPLICATION_JSON))
+                        .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
 
     @Test
-    void getFilms() throws Exception{
+    void getFilms() throws Exception {
 
         mockMvc.perform(get(FilmController.FILMS_PATH)
-                .accept(MediaType.APPLICATION_JSON))
+                        .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
 
     @Test
-    void deleteById() throws Exception{
+    void deleteById() throws Exception {
 
         mockMvc.perform(delete(FilmController.FILMS_PATH_ID, UUID.randomUUID())
-                .accept(MediaType.APPLICATION_JSON))
+                        .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNoContent());
+    }
+
+    @Test
+    void getByIdNotFound() throws Exception {
+
+        given(filmService.getById(any(UUID.class))).willThrow(NotFoundException.class);
+
+        mockMvc.perform((get(FilmController.FILMS_PATH_ID, UUID.randomUUID())))
+                .andExpect(status().isNotFound());
     }
 }
