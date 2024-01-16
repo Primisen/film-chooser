@@ -1,5 +1,6 @@
 package com.cats_production.filmchooser.service.impl;
 
+import com.cats_production.filmchooser.exception.NotFoundException;
 import com.cats_production.filmchooser.model.Film;
 import com.cats_production.filmchooser.repository.FilmRepository;
 import com.cats_production.filmchooser.service.FilmService;
@@ -7,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -33,7 +35,7 @@ public class FilmServiceImpl implements FilmService {
 
     @Override
     public void updateById(UUID id, Film film) {
-        Film existing = filmRepository.findById(film.getId()).orElseThrow(() -> new RuntimeException());
+        Film existing = filmRepository.findById(film.getId()).orElseThrow(NotFoundException::new);
         existing.setName(film.getName());
         existing.setYear(film.getYear());
 
@@ -46,7 +48,7 @@ public class FilmServiceImpl implements FilmService {
     }
 
     @Override
-    public Film getById(UUID id) {
-        return filmRepository.findById(id).orElseThrow(() -> new RuntimeException());
+    public Optional<Film> getById(UUID id) {
+        return filmRepository.findById(id);
     }
 }

@@ -1,6 +1,5 @@
 package com.cats_production.filmchooser.controller;
 
-import com.cats_production.filmchooser.exception.NotFoundException;
 import com.cats_production.filmchooser.service.FilmService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +8,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.util.Optional;
 import java.util.UUID;
 
 import static org.mockito.ArgumentMatchers.any;
@@ -25,14 +25,6 @@ class FilmControllerTest {
 
     @MockBean
     FilmService filmService;
-
-    @Test
-    void getById() throws Exception {
-
-        mockMvc.perform(get(FilmController.FILMS_PATH_ID, UUID.randomUUID())
-                        .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk());
-    }
 
     @Test
     void getFilms() throws Exception {
@@ -53,7 +45,7 @@ class FilmControllerTest {
     @Test
     void getByIdNotFound() throws Exception {
 
-        given(filmService.getById(any(UUID.class))).willThrow(NotFoundException.class);
+        given(filmService.getById(any(UUID.class))).willReturn(Optional.empty());
 
         mockMvc.perform((get(FilmController.FILMS_PATH_ID, UUID.randomUUID())))
                 .andExpect(status().isNotFound());

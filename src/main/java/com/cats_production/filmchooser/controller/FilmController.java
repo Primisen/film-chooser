@@ -1,5 +1,6 @@
 package com.cats_production.filmchooser.controller;
 
+import com.cats_production.filmchooser.exception.NotFoundException;
 import com.cats_production.filmchooser.model.Film;
 import com.cats_production.filmchooser.service.FilmService;
 import lombok.extern.slf4j.Slf4j;
@@ -38,7 +39,7 @@ public class FilmController {
 
     @GetMapping(FILMS_PATH_ID)
     public Film getById(@PathVariable UUID id) {
-        return filmService.getById(id);
+        return filmService.getById(id).orElseThrow(NotFoundException::new);
     }
 
     @PostMapping(FILMS_PATH)
