@@ -1,7 +1,7 @@
 package com.cats_production.filmchooser.controller;
 
+import com.cats_production.filmchooser.dto.FilmDTO;
 import com.cats_production.filmchooser.exception.NotFoundException;
-import com.cats_production.filmchooser.model.Film;
 import com.cats_production.filmchooser.service.FilmService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,29 +33,29 @@ public class FilmController {
     }
 
     @GetMapping(FILMS_PATH)
-    public Iterable<Film> getFilms() {
+    public Iterable<FilmDTO> getFilms() {
         return filmService.findAll();
     }
 
     @GetMapping(FILMS_PATH_ID)
-    public Film getById(@PathVariable UUID id) {
+    public FilmDTO getById(@PathVariable UUID id) {
         return filmService.getById(id).orElseThrow(NotFoundException::new);
     }
 
     @PostMapping(FILMS_PATH)
-    public ResponseEntity<String> addFilm(@RequestBody Film film) {
-        Film savedFilm = filmService.add(film);
+    public ResponseEntity<String> addFilm(@RequestBody FilmDTO filmDTO) {
+        FilmDTO savedFilmDTO = filmService.add(filmDTO);
 
         HttpHeaders headers = new HttpHeaders();
-        headers.add("Location", "/films" + savedFilm.getId().toString());
+        headers.add("Location", "/films" + savedFilmDTO.getId().toString());
 
         return new ResponseEntity<>(headers, HttpStatus.CREATED);
     }
 
     @PutMapping(FILMS_PATH_ID)
-    public ResponseEntity<String> updateById(@PathVariable("id") UUID id, @RequestBody Film film) {
+    public ResponseEntity<String> updateById(@PathVariable("id") UUID id, @RequestBody FilmDTO filmDTO) {
 
-        filmService.updateById(id, film);
+        filmService.updateById(id, filmDTO);
 
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

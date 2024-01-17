@@ -1,7 +1,7 @@
 package com.cats_production.filmchooser.service.impl;
 
+import com.cats_production.filmchooser.dto.FilmDTO;
 import com.cats_production.filmchooser.exception.NotFoundException;
-import com.cats_production.filmchooser.model.Film;
 import com.cats_production.filmchooser.repository.FilmRepository;
 import com.cats_production.filmchooser.service.FilmService;
 import lombok.extern.slf4j.Slf4j;
@@ -23,21 +23,21 @@ public class FilmServiceImpl implements FilmService {
     }
 
     @Override
-    public Iterable<Film> findAll() {
+    public Iterable<FilmDTO> findAll() {
         return filmRepository.findAll();
     }
 
     @Override
-    public Film add(Film film) {
-        Film savedFilm = filmRepository.save(film);
-        return savedFilm;
+    public FilmDTO add(FilmDTO filmDTO) {
+        FilmDTO savedFilmDTO = filmRepository.save(filmDTO);
+        return savedFilmDTO;
     }
 
     @Override
-    public void updateById(UUID id, Film film) {
-        Film existing = filmRepository.findById(film.getId()).orElseThrow(NotFoundException::new);
-        existing.setName(film.getName());
-        existing.setYear(film.getYear());
+    public void updateById(UUID id, FilmDTO filmDTO) {
+        FilmDTO existing = filmRepository.findById(filmDTO.getId()).orElseThrow(NotFoundException::new);
+        existing.setName(filmDTO.getName());
+        existing.setYear(filmDTO.getYear());
 
         filmRepository.save(existing);
     }
@@ -48,7 +48,7 @@ public class FilmServiceImpl implements FilmService {
     }
 
     @Override
-    public Optional<Film> getById(UUID id) {
+    public Optional<FilmDTO> getById(UUID id) {
         return filmRepository.findById(id);
     }
 }

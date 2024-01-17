@@ -18,7 +18,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(FilmController.class)
-class FilmControllerTest {
+class FilmDTOControllerTest {
 
     @Autowired
     MockMvc mockMvc;
