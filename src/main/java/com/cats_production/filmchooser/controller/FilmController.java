@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -33,7 +34,7 @@ public class FilmController {
     }
 
     @GetMapping(FILMS_PATH)
-    public Iterable<FilmDTO> getFilms() {
+    public List<FilmDTO> getFilms() {
         return filmService.findAll();
     }
 
@@ -55,7 +56,9 @@ public class FilmController {
     @PutMapping(FILMS_PATH_ID)
     public ResponseEntity<String> updateById(@PathVariable("id") UUID id, @RequestBody FilmDTO filmDTO) {
 
-        filmService.updateById(id, filmDTO);
+        if (filmService.updateById(id, filmDTO).isEmpty()){
+            throw new NotFoundException();
+        }
 
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
@@ -63,7 +66,9 @@ public class FilmController {
     @DeleteMapping(FILMS_PATH_ID)
     public ResponseEntity<String> deleteById(@PathVariable("id") UUID id) {
 
-        filmService.deleteById(id);
+        if (!filmService.deleteById(id)){
+            throw new NotFoundException();
+        }
 
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
