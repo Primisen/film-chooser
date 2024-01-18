@@ -18,7 +18,6 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
-import java.util.Date;
 import java.util.UUID;
 
 @Entity
@@ -43,5 +42,5 @@ public class Film {
     @Size(max = 50)
     @Column(length = 50)
     private String name;
-    private Date year;
+    private String year;
 }

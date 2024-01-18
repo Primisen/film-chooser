@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.util.Date;
 import java.util.UUID;
 
 @Getter
@@ -26,5 +25,5 @@ public class FilmDTO {
     @NotBlank
     @NotNull
     private String name;
-    private Date year;
+    private String year;
 }
