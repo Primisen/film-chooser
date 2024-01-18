@@ -1,6 +1,11 @@
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/film_chooser
-
     username: ${DB_USERNAME}
     password: ${DB_PASSWORD}
+    hikari:
+      pool-name: FilmChooser-Pool
+      maximum-pool-size: 5
+  jpa:
+    hibernate:
+      ddl-auto: update
