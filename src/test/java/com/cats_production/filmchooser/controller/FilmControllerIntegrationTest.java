@@ -1,21 +1,10 @@
 package com.cats_production.filmchooser.controller;
 
-import com.cats_production.filmchooser.dto.FilmDTO;
-import com.cats_production.filmchooser.entity.Film;
 import com.cats_production.filmchooser.repository.FilmRepository;
-import jakarta.transaction.Transactional;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.HttpStatusCode;
-import org.springframework.http.ResponseEntity;
-import org.springframework.test.annotation.Rollback;
-
-import java.util.List;
-import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class FilmControllerIntegrationTest {

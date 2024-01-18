@@ -1,6 +1,6 @@
 package com.cats_production.filmchooser.service.impl;
 
-import com.cats_production.filmchooser.dto.FilmDTO;
+import com.cats_production.filmchooser.model.FilmDTO;
 import com.cats_production.filmchooser.mapper.FilmMapper;
 import com.cats_production.filmchooser.repository.FilmRepository;
 import com.cats_production.filmchooser.service.FilmService;

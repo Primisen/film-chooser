@@ -1,6 +1,6 @@
 package com.cats_production.filmchooser.service;
 
-import com.cats_production.filmchooser.dto.FilmDTO;
+import com.cats_production.filmchooser.model.FilmDTO;
 
 import java.util.List;
 import java.util.Optional;

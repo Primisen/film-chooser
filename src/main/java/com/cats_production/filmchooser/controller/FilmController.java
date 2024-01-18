@@ -1,6 +1,6 @@
 package com.cats_production.filmchooser.controller;
 
-import com.cats_production.filmchooser.dto.FilmDTO;
+import com.cats_production.filmchooser.model.FilmDTO;
 import com.cats_production.filmchooser.exception.NotFoundException;
 import com.cats_production.filmchooser.service.FilmService;
 import lombok.extern.slf4j.Slf4j;
@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -44,7 +45,7 @@ public class FilmController {
     }
 
     @PostMapping(FILMS_PATH)
-    public ResponseEntity<String> addFilm(@RequestBody FilmDTO filmDTO) {
+    public ResponseEntity<String> addFilm(@Validated @RequestBody FilmDTO filmDTO) {
         FilmDTO savedFilmDTO = filmService.add(filmDTO);
 
         HttpHeaders headers = new HttpHeaders();

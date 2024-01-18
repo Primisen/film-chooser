@@ -1,5 +1,7 @@
-package com.cats_production.filmchooser.dto;
+package com.cats_production.filmchooser.model;
 
+import  jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -20,6 +22,9 @@ import java.util.UUID;
 @AllArgsConstructor
 public class FilmDTO {
     private UUID id;
+
+    @NotBlank
+    @NotNull
     private String name;
     private Date year;
 }

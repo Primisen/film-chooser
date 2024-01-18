@@ -1,6 +1,6 @@
 package com.cats_production.filmchooser.mapper;
 
-import com.cats_production.filmchooser.dto.FilmDTO;
+import com.cats_production.filmchooser.model.FilmDTO;
 import com.cats_production.filmchooser.entity.Film;
 import org.mapstruct.Mapper;
 
